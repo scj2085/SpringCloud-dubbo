@@ -1,0 +1,8 @@
+server:
+  port: 8012
+dubbo:
+  application:
+    name: dubbo-consume #应用名称
+  registry:
+    protocol: zookeeper #注册中心类型
+    address: 127.0.0.1:2181 #注册中心地址

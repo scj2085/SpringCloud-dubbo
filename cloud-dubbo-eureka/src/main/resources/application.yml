@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  server:
+    enable-self-preservation: false #健康检查
+    eviction-interval-timer-in-ms: 10000  # 续期时间，即扫描失效服务的间隔时间（即控制台扫描，缺省为60*1000ms）
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: "http://localhost:8761/eureka"
+      
+  

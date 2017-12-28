@@ -1,0 +1,11 @@
+server:
+  port: 2233
+dubbo:
+  application:
+    name: dubbo-provider #应用名称
+  registry:
+    protocol: zookeeper #注册中心类型
+    address: 127.0.0.1:2181 #注册中心地址
+  protocol: 
+    name: dubbo #暴露服务方式
+    port: 20881 #暴露服务端口

@@ -1,0 +1,24 @@
+server:
+  port: 2222
+spring:
+  application:
+    name: cloud-projectNameCommon
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: "http://localhost:8761/eureka/"
+    healthcheck:
+      enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+  instance:
+    lease-renewal-interval-in-seconds: 30      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 90  # 发呆时间，即服务续约到期时间（缺省为90s）
+   
+dubbo:
+  application:
+    name: dubbo-projectNameCommon #应用名称
+  registry:
+    protocol: zookeeper #注册中心类型
+    address: 127.0.0.1:2181 #注册中心地址
+  protocol: 
+    name: dubbo #暴露服务方式
+    port: 20880 #暴露服务端口

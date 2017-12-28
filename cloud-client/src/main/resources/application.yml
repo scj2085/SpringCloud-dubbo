@@ -1,0 +1,40 @@
+server:
+  port: 3333
+spring:
+  application:
+    name: cloud-client
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: "http://localhost:8761/eureka/"
+    healthcheck:
+      enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+  instance:
+    lease-renewal-interval-in-seconds: 30      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 90  # 发呆时间，即服务续约到期时间（缺省为90s）
+    
+dubbo:
+  application:
+    name: dubbo-consume #应用名称
+  registry:
+    protocol: zookeeper #注册中心类型
+    address: 127.0.0.1:2181 #注册中心地址
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000 #全局配置断路器时间
+    enabled: true #用来设置服务降级策略是否启用 
+    comkey: #具体的某个接口断路时间配置
+      execution:
+        isolation: 
+          thread:
+            timeoutInMilliseconds: 5000 #具体的某个实例接口断路器事件设置
+ribbon:
+  ReadTimeout: 10000 #读取时间
+  ConnectTimeout: 2000 #连接时间
+  OkToRetryOnAllOperations: false #对所有操作是否进行重试
+
+   

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans.xsd  
+    http://code.alibabatech.com/schema/dubbo  
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
+  
+    <!-- 提供方应用信息，用于计算依赖关系 -->  
+    <dubbo:application name="${dubbo.application.name}" />  
+    <!-- 注册中心服务类型，地址 -->  
+   	<dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" />  
+	
+	<!-- 调用提供方接口 ，mock只在出现非业务异常(比如超时，网络异常等)时执行，服务降级使用-->
+	<!-- 解决服务启动顺序的问题，check="false (待验证)-->
+	<!-- 服务降级分两种方法：1，使用mock进行return 把查询接口和增，删，改接口分开2，设置mock=true实现此接口，接口名+Mock后缀,在实现类中定义异常信息 -->
+<!--     <dubbo:reference id="findTestService" interface="com.java.dubbo.service.FindTestService"  timeout="10000" check="false" mock="return null" />   -->
+    <dubbo:reference id="findTestService" interface="com.java.dubbo.service.FindTestService"  timeout="10000" check="false" mock="true" />  
+    
+    <dubbo:reference id="addService" interface="com.java.dubbo.service.AddService"  timeout="10000" check="false" mock="true" />  
+    
+    
+    
+    
+</beans>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <beans xmlns="http://www.springframework.org/schema/beans" -->
+<!-- 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" -->
+<!-- 	xsi:schemaLocation="http://www.springframework.org/schema/beans -->
+<!--         http://www.springframework.org/schema/beans/spring-beans.xsd -->
+<!--         http://code.alibabatech.com/schema/dubbo -->
+<!--         http://code.alibabatech.com/schema/dubbo/dubbo.xsd -->
+<!--         "> -->
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+<!-- 	<dubbo:application name="dubbo-client" />        -->
+	<!-- 使用zookeeper广播注册中心暴露发现服务地址 -->
+	<!-- <dubbo:registry address="zookeeper://127.0.0.1:2181" /> -->         
+<!-- 	<dubbo:registry address="N/A" check="false"/> -->
+	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+<!-- 	<dubbo:reference id="demoServiceImpl" interface="com.java.dubbo.provider.service.IDemoService" check="false" -->
+<!-- 		url="dubbo://127.0.0.1:20880"   -->
+<!-- 	/> -->
+<!-- 	<dubbo:consumer timeout="600000"/> -->
+<!-- </beans> -->

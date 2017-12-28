@@ -1,0 +1,8 @@
+#spring:
+#  profiles:
+#    active: native2
+#    include: mysql,mongo
+#  cloud:
+#    config:
+#      uri: ${CONFIG_SERVER_URI:http://10.112.178.24:9999/configServer}
+#     fail-fast: true
